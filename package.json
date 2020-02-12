@@ -1,0 +1,25 @@
+{
+  "name": "webpack-typescript-starter",
+  "version": "0.0.1",
+  "description": "A simple Webpack app starter with TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --port 9000 --inline --progress --profile --colors --watch --content-base src/ --mode development",
+    "build": "webpack --config webpack.config.js --mode production",
+    "clean": "rimraf dist"
+  },
+  "author": "Poy Chang",
+  "license": "MIT",
+  "devDependencies": {
+    "awesome-typescript-loader": "5.2.1",
+    "copy-webpack-plugin": "^5.1.1",
+    "rimraf": "^3.0.2",
+    "source-map-loader": "0.2.4",
+    "tslint": "6.0.0",
+    "tslint-loader": "3.5.4",
+    "typescript": "3.7.5",
+    "webpack": "4.41.6",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.10.3"
+  }
+}
