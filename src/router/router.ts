@@ -1,4 +1,4 @@
-import { Route, Options, RouterMode } from "./";
+import { Route, Options } from './';
 
 class Router {
     /** 路由表
@@ -7,7 +7,7 @@ class Router {
      * @type {Route[]}
      * @memberof Router
      */
-    private routes: Route[] = [];
+    routes: Route[] = [];
     /** 路由器的設定
      *
      * @private
@@ -16,7 +16,7 @@ class Router {
      */
     private options: Options = {
         mode: window.history.pushState ? RouterMode.History : RouterMode.Hash,
-        root: "/"
+        root: '/'
     } as Options;
     /** 目前的路由值
      *
@@ -76,7 +76,7 @@ class Router {
         return this;
     }
 
-    navigate(path: string = ""): Router {
+    navigate(path: string = ''): Router {
         if (this.options.mode === RouterMode.History) {
             window.history.pushState(
                 null,
@@ -86,7 +86,7 @@ class Router {
         } else {
             window.location.href = `${window.location.href.replace(
                 /#(.*)$/,
-                ""
+                ''
             )}#${path}`;
         }
         return this;
@@ -102,8 +102,8 @@ class Router {
     private clearSlashes(path: string): string {
         return path
             .toString()
-            .replace(/\/$/, "")
-            .replace(/^\//, "");
+            .replace(/\/$/, '')
+            .replace(/^\//, '');
     }
 
     /** 取得路由值
@@ -113,19 +113,19 @@ class Router {
      * @memberof Router
      */
     private getFragment(): string {
-        let fragment = "";
+        let fragment = '';
         if (this.options.mode === RouterMode.History) {
             fragment = this.clearSlashes(
                 decodeURI(window.location.pathname + window.location.search)
             );
-            fragment = fragment.replace(/\?(.*)$/, "");
+            fragment = fragment.replace(/\?(.*)$/, '');
             fragment =
-                this.options.root !== "/"
-                    ? fragment.replace(this.options.root, "")
+                this.options.root !== '/'
+                    ? fragment.replace(this.options.root, '')
                     : fragment;
         } else {
             const match = window.location.href.match(/#(.*)$/);
-            fragment = match ? match[1] : "";
+            fragment = match ? match[1] : '';
         }
         return this.clearSlashes(fragment);
     }
@@ -140,7 +140,7 @@ class Router {
         this.listener = setInterval(this.action, 100);
     }
 
-    private action() {
+    action = () => {
         if (this.current === this.getFragment()) return;
 
         this.current = this.getFragment();
@@ -153,7 +153,18 @@ class Router {
             }
             return false;
         });
-    }
+    };
 }
 
-export { Router };
+/** 路由模式
+ *
+ * @enum {number}
+ */
+const enum RouterMode {
+    /** 使用瀏覽器的 window.history API */
+    History,
+    /** 使用 # 辨別路由 */
+    Hash
+}
+
+export { Router, RouterMode };

@@ -1,4 +1,4 @@
-import { RouterMode } from "./";
+import { RouterMode } from './';
 
 /** 路由器的設定選項
  *

@@ -1,15 +1,17 @@
-import { Router, RouterMode } from "./router";
+import { Router, RouterMode } from './router';
 
 const router = new Router({
     mode: RouterMode.Hash,
-    root: "/"
+    root: '/'
 });
 
 router
-    .add("about", () => {
-        alert("welcome in about page");
+    .add('about', () => {
+        console.log('welcome in about page');
     })
-    .add("", () => {
+    .add('', () => {
         // general controller
-        console.log("welcome in catch all controller");
+        console.log('welcome in catch all controller');
     });
+
+console.table(router.routes);
