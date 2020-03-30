@@ -6,12 +6,15 @@ const router = new Router({
 });
 
 router
+    .add('home', () => {
+        console.log(`In home page (${window.location.hash})`);
+    })
     .add('about', () => {
-        console.log('welcome in about page');
+        console.log(`In about page (${window.location.hash})`);
     })
     .add('', () => {
-        // general controller
-        console.log('welcome in catch all controller');
-    });
+        console.log(`Using general route controller (${window.location.hash})`);
+    })
+    .navigate('home');
 
 console.table(router.routes);

@@ -1,4 +1,3 @@
-import { Router, RouterMode } from './router';
-import { Route, Options } from './router.model';
+import { Router, RouterMode, Options, Route } from './router';
 
-export { Router, Options, Route, RouterMode };
+export { Router, RouterMode, Options, Route };
